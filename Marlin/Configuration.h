@@ -1389,7 +1389,7 @@
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
-//#define BLTOUCH
+#define BLTOUCH
 
 /**
  * MagLev V4 probe by MDD
@@ -1541,7 +1541,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -40, -10, -1.85 }
+#define NOZZLE_TO_PROBE_OFFSET { -44.8, -9.0, -1.84 }
 
 // Enable and set to use a specific tool for probing. Disable to allow any tool.
 #define PROBING_TOOL 0
@@ -1607,8 +1607,8 @@
  * A total of 2 does fast/slow probes with a weighted average.
  * A total of 3 or more adds more slow probes, taking the average.
  */
-//#define MULTIPLE_PROBING 2
-//#define EXTRA_PROBING    1
+#define MULTIPLE_PROBING 2
+#define EXTRA_PROBING    1
 
 /**
  * Z probes require clearance when deploying, stowing, and moving between
@@ -1664,8 +1664,8 @@
 // Require minimum nozzle and/or bed temperature for probing
 //#define PREHEAT_BEFORE_PROBING
 #if ENABLED(PREHEAT_BEFORE_PROBING)
-  #define PROBING_NOZZLE_TEMP 120   // (°C) Only applies to E0 at this time
-  #define PROBING_BED_TEMP     50
+  #define PROBING_NOZZLE_TEMP 200   // (°C) Only applies to E0 at this time
+  #define PROBING_BED_TEMP     60
 #endif
 
 // For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
@@ -1728,8 +1728,8 @@
 
 // @section homing
 
-//#define NO_MOTION_BEFORE_HOMING // Inhibit movement until all axes have been homed. Also enable HOME_AFTER_DEACTIVATE for extra safety.
-//#define HOME_AFTER_DEACTIVATE   // Require rehoming after steppers are deactivated. Also enable NO_MOTION_BEFORE_HOMING for extra safety.
+#define NO_MOTION_BEFORE_HOMING // Inhibit movement until all axes have been homed. Also enable HOME_AFTER_DEACTIVATE for extra safety.
+#define HOME_AFTER_DEACTIVATE   // Require rehoming after steppers are deactivated. Also enable NO_MOTION_BEFORE_HOMING for extra safety.
 
 /**
  * Set Z_IDLE_HEIGHT if the Z-Axis moves on its own when steppers are disabled.
@@ -1979,8 +1979,8 @@
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
 //#define AUTO_BED_LEVELING_BILINEAR
-//#define AUTO_BED_LEVELING_UBL
-#define MESH_BED_LEVELING
+#define AUTO_BED_LEVELING_UBL
+//#define MESH_BED_LEVELING
 
 /**
  * Normally G28 leaves leveling disabled on completion. Enable one of
@@ -1993,10 +1993,10 @@
 /**
  * Auto-leveling needs preheating
  */
-//#define PREHEAT_BEFORE_LEVELING
+#define PREHEAT_BEFORE_LEVELING
 #if ENABLED(PREHEAT_BEFORE_LEVELING)
-  #define LEVELING_NOZZLE_TEMP 120   // (°C) Only applies to E0 at this time
-  #define LEVELING_BED_TEMP     50
+  #define LEVELING_NOZZLE_TEMP 200   // (°C) Only applies to E0 at this time
+  #define LEVELING_BED_TEMP     60
 #endif
 
 /**
@@ -2094,7 +2094,7 @@
   //========================= Unified Bed Leveling ============================
   //===========================================================================
 
-  //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
+  #define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
   #define MESH_INSET 1              // Set Mesh bounds as an inset region of the bed
   #define GRID_MAX_POINTS_X 10      // Don't use more than 15 points per axis, implementation limited.
@@ -2111,15 +2111,15 @@
   //#define UBL_Z_RAISE_WHEN_OFF_MESH 2.5 // When the nozzle is off the mesh, this value is used
                                           // as the Z-Height correction value.
 
-  //#define UBL_MESH_WIZARD         // Run several commands in a row to get a complete mesh
+  #define UBL_MESH_WIZARD         // Run several commands in a row to get a complete mesh
 
   /**
    * Probing not allowed within the position of an obstacle.
    */
-  //#define AVOID_OBSTACLES
+  #define AVOID_OBSTACLES
   #if ENABLED(AVOID_OBSTACLES)
-    #define CLIP_W  23  // Bed clip width, should be padded a few mm over its physical size
-    #define CLIP_H  14  // Bed clip height, should be padded a few mm over its physical size
+    #define CLIP_W  18.9  // Bed clip width, should be padded a few mm over its physical size
+    #define CLIP_H  12.6  // Bed clip height, should be padded a few mm over its physical size
 
     // Obstacle Rectangles defined as { X1, Y1, X2, Y2 }
     #define OBSTACLE1 { (X_BED_SIZE) / 4     - (CLIP_W) / 2,                       0, (X_BED_SIZE) / 4     + (CLIP_W) / 2, CLIP_H }
@@ -2155,7 +2155,7 @@
 #if ENABLED(LCD_BED_LEVELING)
   #define MESH_EDIT_Z_STEP  0.025 // (mm) Step size while manually probing Z axis.
   #define LCD_PROBE_Z_RANGE 4     // (mm) Z Range centered on Z_MIN_POS for LCD Z adjustment
-  //#define MESH_EDIT_MENU        // Add a menu to edit mesh points
+  #define MESH_EDIT_MENU        // Add a menu to edit mesh points
 #endif
 
 // Add a menu item to move between bed corners for manual bed adjustment
@@ -2197,7 +2197,7 @@
  * Commands to execute at the end of G29 probing.
  * Useful to retract or move the Z probe out of the way.
  */
-//#define Z_PROBE_END_SCRIPT "G1 Z10 F12000\nG1 X15 Y330\nG1 Z0.5\nG1 Z10"
+#define Z_PROBE_END_SCRIPT "G1 Z10 F12000\nG1 X15 Y330\nG1 Z0.5\nG1 Z10"
 
 // @section homing
 
@@ -2223,7 +2223,7 @@
  * - Allows Z homing only when XY positions are known and trusted.
  * - If stepper drivers sleep, XY homing may be required again before Z homing.
  */
-//#define Z_SAFE_HOMING
+#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT X_CENTER  // X point for Z homing
@@ -2349,8 +2349,8 @@
 // Preheat Constants - Up to 10 are supported without changes
 //
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 185
-#define PREHEAT_1_TEMP_BED     45
+#define PREHEAT_1_TEMP_HOTEND 200
+#define PREHEAT_1_TEMP_BED     60
 #define PREHEAT_1_TEMP_CHAMBER 35
 #define PREHEAT_1_FAN_SPEED   255 // Value from 0 to 255
 
